@@ -25,12 +25,12 @@ public class BookServiceImpl extends ServiceImpl<BookDao, Book> implements IBook
 
     @Override
     public Page<Book> getPage(int currentPage, int pageSize, Book book) {
-        LambdaQueryWrapper<Book> queryWrapper = new LambdaQueryWrapper<>();
+        LambdaQueryWrapper<Book> queryWrapper = new LambdaQueryWrapper<Book>();
         //like(条件判断,属性,属性值)
         queryWrapper.like(Strings.isNotEmpty(book.getType()),Book::getType,book.getType());
         queryWrapper.like(Strings.isNotEmpty(book.getName()),Book::getName,book.getName());
         queryWrapper.like(Strings.isNotEmpty(book.getDescription()),Book::getDescription,book.getDescription());
-        Page<Book> page = new Page<>();
+        Page<Book> page = new Page<>(currentPage,pageSize);//!!!不能跳转的原因
         bookDao.selectPage(page,queryWrapper);
         return page;
 
