@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.awt.*;
 import java.util.List;
 
-@Service
+//@Service
 public class BookServiceImpl2 implements BookService {
 
     @Autowired

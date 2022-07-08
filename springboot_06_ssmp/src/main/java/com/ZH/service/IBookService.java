@@ -8,4 +8,6 @@ import org.springframework.stereotype.Service;
 
 public interface IBookService extends IService<Book> {
     Page<Book> getPage(int currentPage, int pageSize);
+
+    Page<Book> getPage(int currentPage, int pageSize, Book book);
 }
