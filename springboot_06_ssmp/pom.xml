@@ -56,11 +56,13 @@
 
 	<build>
 		<plugins>
+			<!--第一个插件非常重要,有了它才能正常运行打好的包-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
+			<!--加上这个插件可以打包成功-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
