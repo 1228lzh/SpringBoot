@@ -50,7 +50,8 @@ public class BookController2 {
     @DeleteMapping("/{id}")
     public R delete(@PathVariable Integer id){//参数的来源 @PathVariable In
         //return bookService.removeById(id);
-        return new R(bookService.removeById(id));
+        Boolean flag = bookService.removeById(id);
+        return new R(flag,flag?ResultMsg.DELETESUCCESS:ResultMsg.UPDATEERROR);
     }
 
     //查询类全部返回true
@@ -74,13 +75,14 @@ public class BookController2 {
 
     @GetMapping("/{currentPage}/{pageSize}")
     public R getPage(@PathVariable int currentPage, @PathVariable int pageSize,Book book){
-
+        //System.out.println("参数--->"+book);
 
         Page<Book> page = bookService.getPage(currentPage, pageSize,book);
         //如果当前页码数>总页码数,则将当前页码数置为最大页码数
         if (currentPage>page.getPages()){
             page = bookService.getPage((int) page.getPages(),pageSize,book);//重新查询
         }
+
         return new R(true,page);
     }
 }
